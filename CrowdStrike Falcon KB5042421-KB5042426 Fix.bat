@@ -2,7 +2,7 @@
 setlocal
 title CrowdStrike Falcon KB5042421-KB5042426 Fixer
 echo Program Name: CrowdStrike Falcon KB5042421-KB5042426 Fixer
-echo Version: 2.0.2
+echo Version: 2.0.3
 echo Developer: @YonatanReuvenIsraeli
 echo Website: https://www.yonatanreuvenisraeli.dev
 echo License: GNU General Public License v3.0
@@ -139,7 +139,6 @@ goto "AssignDriveLetterWindows"
 
 :"AssignDriveLetterWindowsError"
 del "%cd%DiskPart.txt" /f /q
-echo.
 echo There has been an error! Press any key to try again.
 pause > nul 2>&1
 goto "AssignDriveLetterWindows"
@@ -196,7 +195,7 @@ echo "%DriveLetterWindows%" does not exist! Please try again.
 goto "DriveLetterWindows"
 
 :"NotWindows"
-+echo Windows not installed on "%DriveLetterWindows%"!
+echo Windows not installed on "%DriveLetterWindows%"!
 goto DriveLetterWindows
 goto "Volume1"
 
