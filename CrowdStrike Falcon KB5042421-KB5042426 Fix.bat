@@ -2,7 +2,7 @@
 setlocal
 title CrowdStrike Falcon KB5042421-KB5042426 Fixer
 echo Program Name: CrowdStrike Falcon KB5042421-KB5042426 Fixer
-echo Version: 2.0.0
+echo Version: 2.0.1
 echo Developer: @YonatanReuvenIsraeli
 echo Website: https://www.yonatanreuvenisraeli.dev
 echo License: GNU General Public License v3.0
@@ -224,10 +224,10 @@ if /i "%CrowdStrike%"=="No" goto "Close"
 :"Fix"
 del "%DriveLetterWindows%\Windows\System32\Drivers\C-00000291*.sys" /f /q
 if not "%errorlevel%"=="0" goto "Error"
+endlocal
 echo.
 echo CrowdStrike Falcon fixed! Press any key to reboot this PC.
 pause > nul 2>&1
-endlocal
 wpeutil reboot
 exit
 
