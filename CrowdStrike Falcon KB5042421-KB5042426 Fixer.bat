@@ -2,7 +2,7 @@
 setlocal
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 2.0.5
+echo Version: 2.0.6
 echo Developer: @YonatanReuvenIsraeli
 echo Website: https://www.yonatanreuvenisraeli.dev
 echo License: GNU General Public License v3.0
@@ -25,7 +25,7 @@ echo list vol > "%cd%DiskPart.txt"
 echo exit >> "%cd%DiskPart.txt"
 DiskPart /s "%cd%DiskPart.txt" 2>&1
 if not "%errorlevel%"=="0" goto "Volume1Error"
-del "%cd%DiskPart.txt" /f /q
+del "%cd%DiskPart.txt" /f /q > nul 2>&1
 echo Volumes attached to this PC listed.
 goto "WindowsAsk1"
 
@@ -37,7 +37,7 @@ pause > nul 2>&1
 goto "Volume1"
 
 :"Volume1Error"
-del "%cd%DiskPart.txt" /f /q
+del "%cd%DiskPart.txt" /f /q > nul 2>&1
 echo.
 echo There has been an error! Press any key to try again.
 pause > nul 2>&1
@@ -125,7 +125,7 @@ echo assign letter=%WindowsDriveLetter% >> "%cd%DiskPart.txt"
 echo exit >> "%cd%DiskPart.txt"
 DiskPart /s "%cd%DiskPart.txt" > nul 2>&1
 if not "%errorlevel%"=="0" goto "AssignDriveLetterWindowsError"
-del "%cd%DiskPart.txt" /f /q
+del "%cd%DiskPart.txt" /f /q > nul 2>&1
 echo Assigned Windows volume %WindowsVolume% drive letter "%WindowsDriveLetter%".
 set DriveLetterWindows=%WindowsDriveLetter%
 goto "BIOSType"
@@ -138,7 +138,7 @@ pause > nul 2>&1
 goto "AssignDriveLetterWindows"
 
 :"AssignDriveLetterWindowsError"
-del "%cd%DiskPart.txt" /f /q
+del "%cd%DiskPart.txt" /f /q > nul 2>&1
 echo There has been an error! Press any key to try again.
 pause > nul 2>&1
 goto "AssignDriveLetterWindows"
@@ -223,7 +223,7 @@ if /i "%CrowdStrike%"=="No" goto "Close"
 :"Fix"
 echo.
 echo Fixing CrowdStrike Falcon.
-del "%DriveLetterWindows%\Windows\System32\Drivers\C-00000291*.sys" /f /q
+del "%DriveLetterWindows%\Windows\System32\Drivers\C-00000291*.sys" /f /q > nul 2>&1
 if not "%errorlevel%"=="0" goto "Error"
 endlocal
 echo CrowdStrike Falcon fixed! Press any key to reboot this PC.
