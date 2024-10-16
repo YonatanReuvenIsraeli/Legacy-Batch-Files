@@ -2,7 +2,7 @@
 setlocal
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 2.0.6
+echo Version: 2.0.7
 echo Developer: @YonatanReuvenIsraeli
 echo Website: https://www.yonatanreuvenisraeli.dev
 echo License: GNU General Public License v3.0
@@ -12,7 +12,7 @@ goto "Volume1"
 
 :"NotWindowsRecoveryEnvironment"
 echo.
-echo You are not Windows Recovery Environment! You must run this option from in Windows Recovery Environment. Press any key to close this batch file.
+echo You are not Windows Recovery Environment! You must run this batch file in Windows Recovery Environment. Press any key to close this batch file.
 pause > nul 2>&1
 goto "Close"
 
