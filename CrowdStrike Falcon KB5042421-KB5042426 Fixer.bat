@@ -2,7 +2,7 @@
 setlocal
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 2.0.7
+echo Version: 2.0.8
 echo Developer: @YonatanReuvenIsraeli
 echo Website: https://www.yonatanreuvenisraeli.dev
 echo License: GNU General Public License v3.0
@@ -21,8 +21,8 @@ echo.
 if exist "%cd%DiskPart.txt" goto DiskPartExistVolume1
 echo.
 echo Listing volumes attached to this PC.
-echo list vol > "%cd%DiskPart.txt"
-echo exit >> "%cd%DiskPart.txt"
+(echo list vol) > "%cd%DiskPart.txt"
+(echo exit) >> "%cd%DiskPart.txt"
 DiskPart /s "%cd%DiskPart.txt" 2>&1
 if not "%errorlevel%"=="0" goto "Volume1Error"
 del "%cd%DiskPart.txt" /f /q > nul 2>&1
@@ -118,11 +118,11 @@ goto "WindowsDriveLetter"
 if exist "%cd%DiskPart.txt" goto DiskPartExistAssignDriveLetterWindows
 echo.
 echo Assigning Windows volume %WindowsVolume% drive letter "%WindowsDriveLetter%".
-echo sel vol %WindowsVolume% > "%cd%DiskPart.txt"
-echo remove all >> "%cd%DiskPart.txt"
-echo sel vol %WindowsVolume% >> "%cd%DiskPart.txt"
-echo assign letter=%WindowsDriveLetter% >> "%cd%DiskPart.txt"
-echo exit >> "%cd%DiskPart.txt"
+(echo sel vol %WindowsVolume%) > "%cd%DiskPart.txt"
+(echo remove all) >> "%cd%DiskPart.txt"
+(echo sel vol %WindowsVolume%) >> "%cd%DiskPart.txt"
+(echo assign letter=%WindowsDriveLetter%) >> "%cd%DiskPart.txt"
+(echo exit) >> "%cd%DiskPart.txt"
 DiskPart /s "%cd%DiskPart.txt" > nul 2>&1
 if not "%errorlevel%"=="0" goto "AssignDriveLetterWindowsError"
 del "%cd%DiskPart.txt" /f /q > nul 2>&1
