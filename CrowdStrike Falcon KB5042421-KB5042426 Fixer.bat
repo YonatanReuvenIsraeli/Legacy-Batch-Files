@@ -2,7 +2,7 @@
 setlocal
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 2.0.8
+echo Version: 2.0.9
 echo Developer: @YonatanReuvenIsraeli
 echo Website: https://www.yonatanreuvenisraeli.dev
 echo License: GNU General Public License v3.0
@@ -128,7 +128,7 @@ if not "%errorlevel%"=="0" goto "AssignDriveLetterWindowsError"
 del "%cd%DiskPart.txt" /f /q > nul 2>&1
 echo Assigned Windows volume %WindowsVolume% drive letter "%WindowsDriveLetter%".
 set DriveLetterWindows=%WindowsDriveLetter%
-goto "BIOSType"
+goto "Start"
 
 :"DiskPartExistAssignDriveLetterWindows"
 set DiskPart=True
