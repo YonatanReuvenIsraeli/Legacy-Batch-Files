@@ -2,7 +2,7 @@
 setlocal
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 2.0.9
+echo Version: 2.0.10
 echo Developer: @YonatanReuvenIsraeli
 echo Website: https://www.yonatanreuvenisraeli.dev
 echo License: GNU General Public License v3.0
@@ -80,7 +80,7 @@ goto "SureWindowsAsk2"
 echo.
 set WindowsDriveLetter=
 set /p WindowsDriveLetter="Enter an unused drive letter. (A:-Z:) "
-if exist "%WindowsDriveLetter%" goto WindowsDriveLetterExist
+if exist "%WindowsDriveLetter%" goto "WindowsDriveLetterExist"
 if /i "%WindowsDriveLetter%"=="A:" goto "AssignDriveLetterWindows"
 if /i "%WindowsDriveLetter%"=="B:" goto "AssignDriveLetterWindows"
 if /i "%WindowsDriveLetter%"=="C:" goto "AssignDriveLetterWindows"
@@ -111,7 +111,7 @@ echo Invalid syntax!
 goto "WindowsDriveLetter"
 
 :"WindowsDriveLetterExist"
-echo "%WindowsDriveLetter%" exist! Please try again.
+echo "%WindowsDriveLetter%" exists! Please try again.
 goto "WindowsDriveLetter"
 
 :"AssignDriveLetterWindows"
