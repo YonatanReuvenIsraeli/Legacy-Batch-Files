@@ -2,7 +2,7 @@
 setlocal
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 2.0.10
+echo Version: 2.0.11
 echo Developer: @YonatanReuvenIsraeli
 echo Website: https://www.yonatanreuvenisraeli.dev
 echo License: GNU General Public License v3.0
@@ -18,7 +18,7 @@ goto "Close"
 
 :"Volume1"
 echo.
-if exist "%cd%DiskPart.txt" goto DiskPartExistVolume1
+if exist "%cd%DiskPart.txt" goto "DiskPartExistVolume1"
 echo.
 echo Listing volumes attached to this PC.
 (echo list vol) > "%cd%DiskPart.txt"
@@ -115,7 +115,7 @@ echo "%WindowsDriveLetter%" exists! Please try again.
 goto "WindowsDriveLetter"
 
 :"AssignDriveLetterWindows"
-if exist "%cd%DiskPart.txt" goto DiskPartExistAssignDriveLetterWindows
+if exist "%cd%DiskPart.txt" goto "DiskPartExistAssignDriveLetterWindows"
 echo.
 echo Assigning Windows volume %WindowsVolume% drive letter "%WindowsDriveLetter%".
 (echo sel vol %WindowsVolume%) > "%cd%DiskPart.txt"
