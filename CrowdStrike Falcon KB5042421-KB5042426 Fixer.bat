@@ -2,13 +2,13 @@
 setlocal
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 2.0.13
+echo Version: 2.0.14
 echo Developer: @YonatanReuvenIsraeli
 echo Website: https://www.yonatanreuvenisraeli.dev
 echo License: GNU General Public License v3.0
 net user > nul 2>&1
 if "%errorlevel%"=="0" goto "NotWindowsRecoveryEnvironment"
-goto "Volume1"
+goto "Volume"
 
 :"NotWindowsRecoveryEnvironment"
 echo.
@@ -16,31 +16,31 @@ echo You are not Windows Recovery Environment! You must run this batch file in W
 pause > nul 2>&1
 goto "Close"
 
-:"Volume1"
-if exist "%cd%DiskPart.txt" goto "DiskPartExistVolume1"
+:"Volume"
+if exist "%cd%DiskPart.txt" goto "DiskPartExistVolume"
 echo.
 echo Listing volumes attached to this PC.
 (echo list vol) > "%cd%DiskPart.txt"
 (echo exit) >> "%cd%DiskPart.txt"
 DiskPart /s "%cd%DiskPart.txt" 2>&1
-if not "%errorlevel%"=="0" goto "Volume1Error"
+if not "%errorlevel%"=="0" goto "VolumeError"
 del "%cd%DiskPart.txt" /f /q > nul 2>&1
 echo Volumes attached to this PC listed.
 goto "WindowsAsk1"
 
-:"DiskPartExistVolume1"
+:"DiskPartExistVolume"
 set DiskPart=True
 echo.
 echo Please temporary rename to something else or temporary move to another location "%cd%DiskPart.txt" in order for this batch file to proceed. Press any key to continue when "%cd%DiskPart.txt" is renamed to something else or moved to another location. This batch file will let you know when you can rename it back to its original name or move it back to its original location.
 pause > nul 2>&1
-goto "Volume1"
+goto "Volume"
 
-:"Volume1Error"
+:"VolumeError"
 del "%cd%DiskPart.txt" /f /q > nul 2>&1
 echo.
 echo There has been an error! Press any key to try again.
 pause > nul 2>&1
-goto "Volume1"
+goto "Volume"
 
 :"WindowsAsk1"
 echo.
@@ -53,7 +53,7 @@ echo.
 set SureWindowsAsk1=
 set /p SureWindowsAsk1="Are you sure volume %WindowsVolume% is the Windows volume? (Yes/No) "
 if /i "%SureWindowsAsk1%"=="Yes" goto "WindowsAsk2"
-if /i "%SureWindowsAsk1%"=="No" goto "Volume1"
+if /i "%SureWindowsAsk1%"=="No" goto "Volume"
 echo Invalid syntax!
 goto "SureWindowsAsk1"
 
@@ -138,7 +138,7 @@ goto "AssignDriveLetterWindows"
 del "%cd%DiskPart.txt" /f /q > nul 2>&1
 echo There has been an error! Press any key to try again.
 pause > nul 2>&1
-goto "AssignDriveLetterWindows"
+goto "WindowsDriveLetterExist"
 
 :"DriveLetterWindows"
 echo.
@@ -194,7 +194,7 @@ goto "DriveLetterWindows"
 :"NotWindows"
 echo Windows not installed on "%DriveLetterWindows%"!
 goto DriveLetterWindows
-goto "Volume1"
+goto "Volume"
 
 :"Start"
 echo.
