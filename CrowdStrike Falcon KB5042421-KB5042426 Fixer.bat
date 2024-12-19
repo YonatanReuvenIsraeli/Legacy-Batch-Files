@@ -2,10 +2,11 @@
 setlocal
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 2.0.14
-echo Developer: @YonatanReuvenIsraeli
-echo Website: https://www.yonatanreuvenisraeli.dev
+echo Version: 2.0.15
 echo License: GNU General Public License v3.0
+echo Developer: @YonatanReuvenIsraeli
+echo GitHub: https://github.com/YonatanReuvenIsraeli
+echo Sponsor: https://github.com/sponsors/YonatanReuvenIsraeli 
 net user > nul 2>&1
 if "%errorlevel%"=="0" goto "NotWindowsRecoveryEnvironment"
 goto "Volume"
